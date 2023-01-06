@@ -17,9 +17,19 @@ async function Getdata(){
     }
    
 }
-setInterval(Getdata, 5000);
+setInterval(Getdata, 60000);
 
+app.use(Express.json());
+
+app.get('/get/mediciones/grupo3', async(req, res)=>{
+    let {rows, rowCount} = await Pool.query('select * from iot.AguaSensor');
+    res.json({
+        cantidad:rowCount,
+        data:rows,
+        status:200
+    })
+})
 
 app.listen(4001, ()=>{
-    console.log('estamos corriendo en el 3000')
+    console.log('estamos corriendo en el 4001')
 })
