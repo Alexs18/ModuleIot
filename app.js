@@ -2,6 +2,7 @@ let Express = require('express');
 let app = Express();
 let Axios = require('axios').default;
 let Pool = require('./app/database/index');
+let Cors = requiere('cors');
 
 let URI = 'https://industrial.api.ubidots.com/api/v1.6/devices/e8db84e11c61/tds/lv??token=BBFF-WQmASNccF8EgISIXtWYqOOeHa5UFq0'
 
@@ -17,9 +18,10 @@ async function Getdata(){
     }
    
 }
-setInterval(Getdata, 60000);
+//setInterval(Getdata, 60000);
 
 app.use(Express.json());
+app.use(Cors())
 
 app.get('/get/mediciones/grupo3', async(req, res)=>{
     let {rows, rowCount} = await Pool.query('select * from iot.AguaSensor');
