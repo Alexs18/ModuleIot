@@ -2,7 +2,7 @@ let Express = require('express');
 let app = Express();
 let Axios = require('axios').default;
 let Pool = require('./app/database/index');
-let Cors = requiere('cors');
+let Cors = require('cors');
 
 let URI = 'https://industrial.api.ubidots.com/api/v1.6/devices/e8db84e11c61/tds/lv??token=BBFF-WQmASNccF8EgISIXtWYqOOeHa5UFq0'
 
