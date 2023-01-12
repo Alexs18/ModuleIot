@@ -23,6 +23,34 @@ async function Getdata(){
 app.use(Express.json());
 app.use(Cors())
 
+async function login(req, res){
+    debugger
+    let {user, password} = req.body;
+    debugger
+    try {
+        
+        let {rows} = await Pool.query(`select * from iot.user 
+        where usuario = '${user}'
+            and
+        contrasena = '${password}'`);
+
+        if (rows.length <= 0) {
+            res.send(false);
+        }
+        res.send(true)
+
+    } catch (error) {
+        console.log('el error del servicio');
+        console.log(error);
+        return {
+            message:'ocurrio un error en el servidor'
+        }
+    }
+
+}
+
+app.post('/login', login); 
+
 app.get('/get/mediciones/grupo3', async(req, res)=>{
     let {rows, rowCount} = await Pool.query('select * from iot.AguaSensor');
     res.json({
