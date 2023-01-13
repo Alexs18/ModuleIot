@@ -95,12 +95,12 @@ async function CorreroPararMediciones(req,res){
     console.log('boleano');
     if (boleano === 'false') {
         clearInterval(IntervloID)
-        return res.json({message:'acabamos de parar la medicion en tiempo real', icon:'warning'})
+        return res.json({message:'acabamos de parar la medición en tiempo real', icon:'warning'})
     }
     if (boleano === 'true') {
         
         IntervloID = setInterval(Getdata, 1000);
-        res.json({message:'comenamos las mediones', icon:'success'})
+        res.json({message:'Empezamos las mediciones', icon:'success'})
         
     }
 }
