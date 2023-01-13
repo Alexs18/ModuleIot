@@ -3,7 +3,7 @@ let app = Express();
 let {createServer} = require('http')
 let Axios = require('axios').default;
 let Pool = require('./app/database/index');
-let Cors = require('cors');
+let cors = require('cors');
 let {Server} = require('socket.io')
 
 let URI = 'https://industrial.api.ubidots.com/api/v1.6/devices/e8db84e11c61/tds/lv??token=BBFF-WQmASNccF8EgISIXtWYqOOeHa5UFq0'
@@ -11,12 +11,7 @@ let URI = 'https://industrial.api.ubidots.com/api/v1.6/devices/e8db84e11c61/tds/
 
 
 app.use(Express.json());
-app.use(Cors(
-    {
-        origin: "localhost:4001", //servidor que deseas que consuma o (*) en caso que sea acceso libre
-        credentials: true
-    }
-))
+app.use(cors());
 let ServerHttp = createServer(app);
 let io = new Server(ServerHttp, {
     cors: {
@@ -93,17 +88,12 @@ async function login(req, res){
 
 var IntervloID;
 async function CorreroPararMediciones(req,res){
-        console.log('p');
 
     let {boleano} = req.params;
     console.log('boleano');
-    console.log(boleano);
-    console.log(typeof(boleano));
     if (boleano === 'false') {
-        console.log('v');
         clearInterval(IntervloID)
         return res.json({message:'acabamos de parar la medicion en tiempo real', icon:'warning'})
-
     }
     if (boleano === 'true') {
         
