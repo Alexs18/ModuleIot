@@ -31,7 +31,7 @@ io.on("connection", (socket)=>{
         console.log('cantidad');
         console.log(cantidadanterior);
         setInterval(async()=>{
-            let {rows, rowCount} = await Pool.query('select * from iot.AguaSensor');
+            let {rows, rowCount} = await Pool.query('select * from iot.aguasensor order by id desc limit 20');
             console.log('la cantidad 2');
             console.log(rowCount);
             if (cantidadanterior === rowCount) {
