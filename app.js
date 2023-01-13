@@ -15,7 +15,8 @@ app.use(cors());
 let ServerHttp = createServer(app);
 let io = new Server(ServerHttp, {
     cors: {
-        origin: "https://sparks-iot.com",
+        // origin: "https://sparks-iot.com",
+        origin: "http://localhost:4200",
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
@@ -73,8 +74,9 @@ async function login(req, res){
 
         if (rows.length <= 0) {
             res.send(false);
+        }else{
+            res.send(true); 
         }
-        res.send(true)
 
     } catch (error) {
         console.log('el error del servicio');
