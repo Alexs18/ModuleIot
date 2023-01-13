@@ -15,7 +15,7 @@ app.use(cors());
 let ServerHttp = createServer(app);
 let io = new Server(ServerHttp, {
     cors: {
-        origin: "http://localhost:4200",
+        origin: "https://sparks-iot.com",
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
